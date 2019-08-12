@@ -21,7 +21,7 @@ var paintingModal = "pen"           // 画笔模式   line||pen||cut
 var cuted = false                   // 标记裁剪时，是否已经裁剪
 var animationTimer = null           // 弹幕动画的timer
 var barrageArray = []               // 保存弹幕的数组
-var globalPoint = { x : 0, y : 0 }                // canvas上鼠标的点
+var globalPoint = { x : 0, y : 0 }  // canvas上鼠标的点
 var barrageData = [                 // 弹幕假数据
     "1111111111",
     "我是一条弹幕",
@@ -320,6 +320,7 @@ function funCut(){
 // 发送弹幕
 function funDan(){
     document.querySelector(".danmu-box").style.display = "block"
+    closePenMenu()
     lookModalToggle( true )
     barrageData.forEach( item => {
         var aBraage = new Barrage( item, $canvas )
@@ -564,12 +565,12 @@ $rotateBtn.addEventListener( "click", function(){
 
     var w = canvas2.height
     var h = canvas2.width
-    canvas2.height = imgEl.height
-    canvas2.width = imgEl.width
-    
+    canvas2.height = h
+    canvas2.width = w
+
     ctx2.translate( canvas2.width , 0 )
     ctx2.rotate( 90 * Math.PI / 180 )
-    ctx2.drawImage( imgEl, 0, 0, canvas2.width, canvas2.height )
+    ctx2.drawImage( imgEl, 0, 0 )
     ctx2.restore()
     var imgUrl = canvas2.toDataURL()
     imgEl.src = imgUrl
