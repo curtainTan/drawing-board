@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>画画吧</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1341736_mb9nh3ehu1e.css">
+    <link rel="stylesheet" href="./css/my.css">
+</head>
+<body>
+    <canvas id="canvas" >
+        <p>-------对不起-你的浏览器不支持canvas</p>
+    </canvas>
+    <div class="tools" >
+        <div class="container">
+            <i class="iconfont icon-down-load" data-fun="save" title="保存"></i>
+            <i class="iconfont icon-shubiao" data-fun="shubiao" title="鼠标"></i>
+            <div class="toolItem">
+                <i class="iconfont icon-pen action" data-fun="pen" title="画笔"></i>
+                <div class="menuBox hide">
+                    <i class="iconfont icon-clear1" data-fun="closeMenu" ></i>
+                    <p>画笔大小</p>
+                    <div class="size-box">
+                        <span class="dot-box" ><span class="circle-dot"></span></span>
+                        <input id="size-range" type="range" value="1" max="10" min="1">
+                    </div>
+                    <p>画笔颜色</p>
+                    <div class="color-box">
+                        <div class="color-item action" data-color="0" ></div>
+                        <div class="color-item" data-color="1" ></div>
+                        <div class="color-item" data-color="2" ></div>
+                        <div class="color-item" data-color="3" ></div>
+                        <div class="color-item" data-color="4" ></div>
+                        <div class="color-item" data-color="5" ></div>
+                    </div>
+                    <p>画笔透明度</p>
+                    <div class="size-box">
+                        <span class="dot-box" ><i class="opacity-dot"></i> </span>
+                        <input id="op-range" type="range" value="1" max="10" min="1">
+                    </div>
+                </div>
+            </div>
+            <i class="iconfont icon-line1" data-fun="line" title="直线" ></i>
+            <i class="iconfont icon-eraser" data-fun="eraser" title="橡皮檫"></i>
+            <i class="iconfont icon-clear2" data-fun="del" title="删除"></i>
+            <i class="iconfont icon-caijian" data-fun="cut" title="裁剪" ></i>
+            <i class="iconfont icon-wenzi" data-fun="text" title="文字"></i>
+            <i class="iconfont icon-danmu" data-fun="dan" title="弹幕"></i>
+            <i class="iconfont icon-undo1" data-fun="undo" title="撤销"></i>
+            <i class="iconfont icon-redo2" data-fun="redo" title="前进"></i>
+        </div>
+    </div>
+    <div class="right-drawer">
+        <div class="mask"></div>
+        <div class="r-drawer-box">
+            <div class="img-box">
+                <img class="displayImg" src="" alt="y">
+            </div>
+            <div class="bottom-box">
+                <button class="rotate-btn">
+                    <i class="iconfont icon-xuanzhuan1"></i>
+                    <span>旋转</span>
+                </button>
+                <button class="btn">
+                    <i class="iconfont icon-down-load"></i>
+                    <span>保存</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="cut-box">
+        <div class="op-mask"></div>
+        <div class="select-cut-box">
+            <div class="text-px">0x0</div>
+            <div class="cut-tools-box">
+                <i class="iconfont icon-down-load" data-cutfun="save" ></i>
+                |
+                <i class="iconfont icon-unie6462" data-cutfun="close"></i>
+                <i class="iconfont icon-check" data-cutfun="ok">完成</i>
+            </div>
+        </div>
+    </div>
+    <div class="danmu-box">
+        <div class="danmu-container">
+            <h1>弹幕模式</h1>
+            <div class="input-box">
+                <input id="danmu-input" type="text" placeholder="来，发点什么吧----" >
+                <button id="send" >发送</button>
+                <button id="quitDanmu" >退出弹幕模式</button>
+            </div>
+        </div>
+    </div>
+    <canvas id="canvas2" ></canvas>
+    <script src="./js/my.js"></script>
+</body>
+</html>

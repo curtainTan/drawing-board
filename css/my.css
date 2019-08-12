@@ -1,0 +1,371 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body, html{
+    width: 100%;
+    height: 100%;
+}
+
+#canvas{
+    display: block;
+    position: absolute;
+    cursor: url("../image/16.ico"), default;
+}
+
+#canvas2{
+    display: none;
+}
+
+.tools{
+    position: fixed;
+    left: 0;
+    bottom: 30px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    padding: 8px 20px;
+    border-radius: 40px;
+    box-shadow: 0 1px 2px 0 rgba(32,33,36,0.28);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container i{
+    padding: 2px;
+    font-size: 20px;
+    margin: 6px;
+    transition: 0.4s;
+    border: 2px solid transparent;
+}
+
+.container i.action{
+    border-radius: 4px;
+    border: 2px solid rgb(43, 106, 240);
+}
+.toolItem{
+    position: relative;
+}
+
+.hide{
+    display: none;
+}
+
+.menuBox{
+    position: absolute;
+    bottom: 50px;
+    left: -50px;
+    width: 250px;
+    border: 1px solid rgb(100, 100, 100);
+    background-color: #fff;
+    border-radius: 8px;
+    cursor: default;
+    padding: 18px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    width: 200px;
+    border-radius: 10px; 
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}   
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px; /*将轨道设为圆角的*/
+    background-color: rgb(223, 223, 223);
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 14px;
+    width: 14px;
+    margin-top: -5px;
+    background: #06c0c7; 
+    cursor: pointer;
+    border-radius: 50%; /*外观设置为圆形*/
+}
+
+.size-box{
+    display: flex;
+    height: 24px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dot-box{
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-dot{
+    display: inline-block;
+    background: #000;
+    border-radius: 50%;
+    width: 2px;
+    height: 2px;
+}
+.opacity-dot{
+    display: inline-block;
+    background: #000;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+}
+
+.menuBox i.icon-clear1{
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 28px;
+    cursor: pointer;
+    color: rgb(100, 100, 100)
+}
+
+.menuBox p{
+    padding: 7px 0px;
+    font-size: 14px;
+    font-weight: 550;
+    color: rgb(100, 100, 100);
+}
+
+.color-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.color-item{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
+.color-box .action::before{
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 4px;
+    left: 4px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.color-box div:nth-child(1){
+    background-color: #000;
+}
+.color-box div:nth-child(2){
+    background-color: #FF3333;
+}
+.color-box div:nth-child(3){
+    background-color: #99CC00;
+}
+.color-box div:nth-child(4){
+    background-color: #0066FF;
+}
+.color-box div:nth-child(5){
+    background-color: #FFFF33;
+}
+.color-box div:nth-child(6){
+    background-color: #33CC66;
+}
+
+
+/* 遮罩和drawer */
+.mask{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    z-index: 9;
+}
+/* .r-drawer-box{
+    position: absolute;
+    width: 30vw;
+    height: 100vh;
+    left: -30vw;
+    background-color: #555;
+    transition: left linear .3s;
+    z-index: 10;
+} */
+
+
+/* save-box */
+.r-drawer-box{
+    position: absolute;
+    height: 30vh;
+    background-color: #fff;
+    top: 50%;
+    left: 50%;
+    margin-top: -15vh;
+    margin-left: -15vw;
+    display: none;
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px #999;
+    z-index: 10;
+    min-width: 20vw;
+}
+
+.img-box{
+    height: 25vh;
+    text-align: center;
+    margin: 10px;
+}
+
+.img-box img{
+    height: 22vh;
+    border: 1px dashed #888;
+    border-radius: 6px;
+}
+
+.bottom-box{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.rotate-btn, .btn{
+    outline: none;
+    border: 1px solid #999;
+    background-color: #fff;
+    padding: 4px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    border-radius: 8px;
+    color: #999;
+    margin: 0px 4px;
+    cursor: pointer;
+}
+.btn i, .rotate-btn i{
+    margin-right: 8px;
+}
+
+/* cut-box */
+.select-cut-box{
+    display: none;
+    position: absolute;
+    border: 1px dashed #999;
+    z-index: 21;
+    cursor: move;
+}
+
+.select-cut-box .cut-tools-box{
+    position: absolute;
+    bottom: -34px;
+    right: 0px;
+    height: 30px;
+    width: 140px;
+    background-color: rgb(221, 221, 221);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #666;
+    border-radius: 2px;
+}
+
+.select-cut-box .text-px{
+    position: absolute;
+    top: -30px;
+    left: 0px;
+    height: 30px;
+    text-align: left;
+    padding: 0px 8px;
+    line-height: 30px;
+    letter-spacing: 1px;
+    color: #fff;
+    background-color: rgba(39, 39, 39, 0.705);
+    border-radius: 2px;
+}
+.cut-tools-box i{
+    padding: 2px 4px;
+    margin: 0px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: .5s;
+}
+.cut-tools-box i:hover{
+    border: 1px solid #999;
+}
+.op-mask{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20;
+    display: none;
+}
+
+/* 弹幕 */
+.danmu-box{
+    z-index: 90;
+    position: fixed;
+    width: 100vw;
+    height: 100px;
+    bottom: 0;
+    text-align: center;
+    display: none;
+}
+.danmu-container{
+    width: 80%;
+    margin: 0 auto;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 0px 2px #999;
+}
+.danmu-container h1{
+    padding: 8px 0px;
+}
+.danmu-container input{
+    outline: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px dashed #888;
+    background-color: transparent;
+}
+.danmu-container input:focus{
+    outline: none;
+}
+.danmu-container button{
+    cursor: pointer;
+    background-color: transparent;
+    padding: 4px 8px;
+    margin-left: 6px;
+    color: rgb(58, 49, 49);
+    border: 1px solid #888;
+    border-radius: 8px;
+    transition: .5s;
+}
+.danmu-container button:focus{
+    outline: none;
+}
+.danmu-container button:hover{
+    background-color: rgb(161, 224, 211);
+}
