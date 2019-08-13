@@ -251,6 +251,7 @@ function getPos( ev ) {
 function funSave(){
     $mask.style.display = "block"
     document.querySelector(".r-drawer-box").style.display = "block"
+    $rotateBtn.style.display = "none"
     var imgUrl = $canvas.toDataURL("image/png")
     var imgEl = document.getElementsByClassName("displayImg")[0]
     imgEl.src = imgUrl
