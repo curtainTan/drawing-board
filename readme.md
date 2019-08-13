@@ -21,11 +21,11 @@
 
 ### 功能截图：
 ----
-<img src="./image/home.png" height="400px" align="center" />
-<span><img src="./image/2.png" height="400px"  align="center" /></span>
-<span><img src="./image/cut.png" height="400px" align="center" /></span>
-<span><img src="./image/rotate.png" height="400px" align="center" /></span>
-<img src="./image/dan.png" height="400px"  align="center" />
+<img src="./image/home.png" height="400px"  />
+<span><img src="./image/2.png" height="400px" /></span>
+<span><img src="./image/cut.png" height="400px" /></span>
+<span><img src="./image/rotate.png" height="400px" /></span>
+<img src="./image/dan.png" height="400px" />
 
 
 ## 前置说明
