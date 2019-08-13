@@ -373,6 +373,7 @@ quitDanmu.addEventListener( "click", function(){
     ctx.putImageData( canvasHistory[ canvasHistory.length - 1 ], 0, 0 )
     lookModalToggle( false )
     barrageData = []
+    points = []
 } )
 
 
