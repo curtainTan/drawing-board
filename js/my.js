@@ -416,9 +416,6 @@ function saveToHistory(){
     } else {
         canvasHistory.length = step;    // 截断数组
     }
-    if( step === 0 ){
-        console.log("----------初始化的时候")
-    }
 }
 
 // 页面相关的方法
