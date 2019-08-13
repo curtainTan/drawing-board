@@ -31,7 +31,6 @@ var barrageData = [                 // 弹幕假数据
     "999999999999999999"
 ]
 
-
 // 实现撤销和重做的功能
 let canvasHistory = []
 let step = 0
@@ -88,6 +87,12 @@ Barrage.prototype.draw = function( ctx ){
 window.onload = function(){
     canvasSetSize()      // 设置canvas的尺寸
     saveToHistory()      // 保存初始页面
+    window.onblur = function(){
+        document.title = "你的画还没画完！！"
+    }
+    window.onfocus = function(){
+        document.title = "快到碗里来！！"
+    }
 }
 // 设置canvas适应页面
 function canvasSetSize(){
@@ -136,12 +141,10 @@ $container.addEventListener( "click", ( e ) => {
         case "redo":
             funRedo()
             break
-            
     }
     if( e.target.dataset.color ){
         selectColor( e.target )
     }
-    toggleRotateBtn()
 } , false)
 
 // 绘图三步走
@@ -421,6 +424,7 @@ function saveToHistory(){
 $mask.addEventListener("click", function(){
     cuted = false
     $mask.style.display = "none"
+    $rotateBtn.style.display = "none"
     document.querySelector(".r-drawer-box").style.display = "none"
 })
 
@@ -465,14 +469,6 @@ $opRange.onchange = function(){
     document.getElementsByClassName("opacity-dot")[0].style.opacity = 1 - parseInt( $opRange.value ) / 10
 }
 
-function toggleRotateBtn(){
-    if( paintingModal === "cut" ){
-        $rotateBtn.style.display = "block"
-    } else {
-        $rotateBtn.style.display = "none"
-    }
-}
-
 // -------------------裁剪-------------------------------
 
 // 裁剪三步走
@@ -484,6 +480,7 @@ function docDown( ev ){
     if( cuted ) return
     if( paintingModal === "cut" ){
         isDown = true
+        points = []
         points.push({ x : ev.clientX, y : ev.clientY })
         $cutBox.style.top = points[0].y + "px"
         $cutBox.style.left = points[0].x + "px"
@@ -535,6 +532,7 @@ $cutBox.addEventListener( "click", ( e ) => {
 
 function cutSave(  ){
     // 通用
+    $rotateBtn.style.display = "block"
     $cutBox.style.display = "none"
     document.querySelector(".op-mask").style.display = "none"
 
@@ -556,13 +554,10 @@ function cutSave(  ){
     var imgUrl = canvas2.toDataURL()
     var imgEl = document.getElementsByClassName("displayImg")[0]
     imgEl.src = imgUrl
-    // document.getElementsByClassName("img-box")[0].appendChild( imgEl )
     points = []
 }
 $rotateBtn.addEventListener( "click", function(){
     var imgEl = document.getElementsByClassName("displayImg")[0]
-    // var oldData = ctx2.getImageData( 0, 0, canvas2.width, canvas2.height )
-
     var w = canvas2.height
     var h = canvas2.width
     canvas2.height = h
