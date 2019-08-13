@@ -21,13 +21,11 @@
 
 ### 功能截图：
 ----
-<img src="./image/home.png" />
-<div style=" display: flex; justify-content: center; " >
-    <span><img src="./image/2.png" height="200px" /></span>
-    <span><img src="./image/cut.png" height="200px" /></span>
-    <span><img src="./image/rotate.png" height="200px" /></span>
-</div>
-<img src="./image/dan.png"/>
+<img src="./image/home.png" height="400px" align="center" />
+<span><img src="./image/2.png" height="400px"  align="center" /></span>
+<span><img src="./image/cut.png" height="400px" align="center" /></span>
+<span><img src="./image/rotate.png" height="400px" align="center" /></span>
+<img src="./image/dan.png" height="400px"  align="center" />
 
 
 ## 前置说明
