@@ -9,19 +9,19 @@ var $cutBox = document.querySelector(".select-cut-box")
 var $input = document.getElementById("danmu-input")
 var $rotateBtn = document.querySelector(".rotate-btn")
 
-var isDown = false                  // 标志鼠标是否按下
-var lookModal = false               // 鼠标模式
-var ctx = null                      // 画笔
+var isDown = false                  // 标志鼠标是否按下      绘图三步和剪切三步走时，后面两个事件触发的标志
+var lookModal = false               // 鼠标模式             按钮第一个功能，此模式不能绘画，只能看
+var ctx = null                      // 画笔  
 var ctx2 = null                     // 2号画笔
-var points = []                     // 滑动时收集的点
-var beginPoint = null               // 开始的点
-var currentMenu = "icon-pen"        // 初始按钮
-var currentColor = 0                // 初始颜色的index
+var points = []                     // 滑动时收集的点       绘画三步走时，为了时画的线光滑，记录点，减短画线的距离
+var beginPoint = null               // 开始的点            绘画三步走时使用
+var currentMenu = "icon-pen"        // 初始按钮            底部按钮选中的按钮
+var currentColor = 0                // 初始颜色的index     颜色选择，默认第一个
 var paintingModal = "pen"           // 画笔模式   line||pen||cut
-var cuted = false                   // 标记裁剪时，是否已经裁剪
-var animationTimer = null           // 弹幕动画的timer
+var cuted = false                   // 标记裁剪时，是否已经裁剪       裁剪后，防止后续的操作再次触发裁剪操作 
+var animationTimer = null           // 弹幕动画的timer               动画的timer
 var barrageArray = []               // 保存弹幕的数组
-var globalPoint = { x : 0, y : 0 }  // canvas上鼠标的点
+var globalPoint = { x : 0, y : 0 }  // canvas上鼠标的点        ---弹幕时使用
 var barrageData = [                 // 弹幕假数据
     "1111111111",
     "我是一条弹幕",
@@ -32,10 +32,10 @@ var barrageData = [                 // 弹幕假数据
 ]
 
 // 实现撤销和重做的功能
-let canvasHistory = []
-let step = 0
+let canvasHistory = []                    // canvas数据，在每次画线和橡皮檫使用后保存数据
+let step = 0                              // 画笔抬起的步数，清空时，步数也清空
 
-var penAttibutes = {
+var penAttibutes = {                       // 画笔数据，
     width : 2,
     lineCap : "round",
     lineJoin : "round",
@@ -69,19 +69,19 @@ function Barrage( text, canvas ){
 }
 Barrage.prototype.draw = function( ctx ){
     var text = this.text
-    ctx.save()
+    ctx.save()                                  // 把画笔信息压入栈，canvas绘图三步，为了不污染上面和下面的画笔数据
     ctx.strokeStyle = this.color
     ctx.textBaseline = "top"                   // 设置文本基线，默认是bottom，，
     ctx.font = `bold  ${this.fontSize}px "microsoft yahei", sans-serif`
     ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-    ctx.beginPath()
+    ctx.beginPath()                             // 绘图三步走，第二步，重新开启一条路径信息
     ctx.fillText( text, this.x, this.y )
     ctx.strokeText(text, this.x, this.y)
     this.width = ctx.measureText( text ).width
-    ctx.rect( this.x, this.y, this.width, this.fontSize + 2 )
+    ctx.rect( this.x, this.y, this.width, this.fontSize + 2 )           // 因为后面isPointPath不能针对文字和画出的图形，只能针对路径，而且是当前路径
     this.isStop = ctx.isPointInPath( globalPoint.x, globalPoint.y ) || ctx.isPointInStroke( globalPoint.x, globalPoint.y )
-    ctx.restore()
-}
+    ctx.restore()                                // 绘图三步走 释放当前画笔信息，下次使用的画笔是本次前的画笔信息，相当于初始化时的画笔
+}                                                // 为什么要有画图三步走，好习惯，有用有放，下次用的时候信息不混乱
 
 
 window.onload = function(){
