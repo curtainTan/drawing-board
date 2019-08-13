@@ -19,6 +19,15 @@
 7. 撤销/前进
 8. 设置画笔信息
 
+### 功能截图：
+----
+<img src="./image/home.png" />
+<img src="./image/2.png" height="200px" />
+<img src="./image/cut.png" height="200px" />
+<img src="./image/rotate.png" height="200px" />
+<img src="./image/dan.png" height="200px" />
+
+
 ## 前置说明
 ---
     如果你需要参考代码，你需要看下这里。
