@@ -22,10 +22,10 @@
 ### 功能截图：
 ----
 <img src="./image/home.png" />
-<img src="./image/2.png" height="200px" />
-<img src="./image/cut.png" height="200px" />
-<img src="./image/rotate.png" height="200px" />
-<img src="./image/dan.png" height="200px" />
+<span><img src="./image/2.png" height="200px" /></span>
+<span><img src="./image/cut.png" height="200px" /></span>
+<span><img src="./image/rotate.png" height="200px" /></span>
+<span><img src="./image/dan.png" height="200px" /></span>
 
 
 ## 前置说明
