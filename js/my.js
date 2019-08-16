@@ -147,7 +147,7 @@ $container.addEventListener( "click", ( e ) => {
     }
 } , false)
 
-if(document.body.ontouchstart !== undefined){
+if( $canvas.ontouchstart !== undefined ){
     $canvas.ontouchstart = down
     $canvas.ontouchmove = move
     $canvas.ontouchend = up
@@ -340,6 +340,7 @@ function funCut(){
 // 发送弹幕
 function funDan(){
     document.querySelector(".danmu-box").style.display = "block"
+    $container.style.display = "none"
     closePenMenu()
     lookModalToggle( true )
     barrageData.forEach( item => {
@@ -391,6 +392,7 @@ quitDanmu.addEventListener( "click", function(){
     lookModalToggle( false )
     barrageData = []
     points = []
+    $container.style.display = "flex"
 } )
 
 
@@ -486,14 +488,27 @@ $opRange.onchange = function(){
 
 // -------------------裁剪-------------------------------
 
+if( document.body.ontouchstart !== undefined ){
+    document.ontouchstart = docDown
+    document.ontouchmove = docMove
+    document.ontouchend = docUp
+} else {
+    document.onmousedown = docDown
+    document.onmousemove = docMove
+    document.onmouseup = docUp
+    document.onmouseout = docUp
+}
+
+
 // 裁剪三步走
-document.addEventListener('mousedown', docDown, false);
-document.addEventListener('mousemove', docMove, false);
-document.addEventListener('mouseup', docUp, false);
+// document.addEventListener('mousedown', docDown, false);
+// document.addEventListener('mousemove', docMove, false);
+// document.addEventListener('mouseup', docUp, false);
 
 function docDown( ev ){
     if( cuted ) return
     if( paintingModal === "cut" ){
+        ev = ev.touches ? ev.touches[0] : ev
         isDown = true
         points = []
         points.push({ x : ev.clientX, y : ev.clientY })
@@ -504,7 +519,9 @@ function docDown( ev ){
 function docMove( ev ){
     if( cuted ) return
     if( paintingModal === "cut" ){
+        ev = ev.touches ? ev.touches[0] : ev
         if( isDown  && ev.clientX !== points[0].x && ev.clientY !== points[0].y ){
+            points.push( { x : ev.clientX, y : ev.clientY } )
             var op = document.querySelector(".op-mask")
             if( op.style.display !== "block" ){
                 op.style.display = "block"
@@ -519,7 +536,7 @@ function docMove( ev ){
         }
     }
 }
-function docUp( ev ){
+function docUp(){
     if( cuted ) return
     if( !isDown ) return
     if( paintingModal === "cut" ){
@@ -527,7 +544,8 @@ function docUp( ev ){
             cuted = true
         }
         isDown = false
-        points.push( { x : ev.clientX, y : ev.clientY } )
+        // points.push( { x : ev.clientX, y : ev.clientY } )
+        // points.push( { x : points[ points.length - 1 ].x, y : points[ points.length - 1 ].y } )
     }
 }
 // 裁剪方法
@@ -553,15 +571,18 @@ function cutSave(  ){
 
     $mask.style.display = "block"
     document.querySelector(".r-drawer-box").style.display = "block"
-    var cutw = Math.abs( points[1].x - points[0].x )
-    var cuth = Math.abs( points[1].y - points[0].y )
-    if( points[1].x < points[0].x || points[1].y < points[0].y ){
-        [ points[1], points[0] ] = [ points[0], points[1] ]
+    var cutw = Math.abs( points[ points.length - 1 ].x - points[0].x )
+    var cuth = Math.abs( points[ points.length - 1 ].y - points[0].y )
+    if( points[ points.length - 1 ].x < points[0].x || points[ points.length - 1 ].y < points[0].y ){
+        [ points[ points.length - 1 ], points[0] ] = [ points[0], points[ points.length - 1 ] ]
     }
     ctx2 = canvas2.getContext("2d")
 
     canvas2.width = cutw
     canvas2.height = cuth
+
+    console.log( points )
+    console.log( cutw, cuth )
 
     var oldData = ctx.getImageData( points[0].x, points[0].y, cutw, cuth )
     ctx2.putImageData( oldData, 0, 0, )

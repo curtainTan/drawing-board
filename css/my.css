@@ -250,6 +250,7 @@ input[type=range]::-webkit-slider-thumb {
     color: #999;
     margin: 0px 4px;
     cursor: pointer;
+    width: 77px;
 }
 .btn i, .rotate-btn i{
     margin-right: 8px;
@@ -404,6 +405,15 @@ input[type=range]::-webkit-slider-thumb {
     .danmu-container{
         width: 100%;
         border-radius: 0;
+    }
+    .danmu-container h1{
+        font-size: 16px;
+    }
+
+    /* caijian */
+    .r-drawer-box{
+        min-width: 70vw;
+        margin-left: -35vw;
     }
 }
 
