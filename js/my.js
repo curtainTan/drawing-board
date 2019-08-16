@@ -147,6 +147,12 @@ $container.addEventListener( "click", ( e ) => {
     }
 } , false)
 
+// 绘图三步走
+// $canvas.addEventListener('mousedown', down, false);
+// $canvas.addEventListener('mousemove', move, false);
+// $canvas.addEventListener('mouseup', up, false);
+// $canvas.addEventListener('mouseout', up, false);
+
 if( $canvas.ontouchstart !== undefined ){
     $canvas.ontouchstart = down
     $canvas.ontouchmove = move
@@ -157,12 +163,6 @@ if( $canvas.ontouchstart !== undefined ){
     $canvas.onmouseup = up
     $canvas.onmouseout = up
 }
-
-// 绘图三步走
-// $canvas.addEventListener('mousedown', down, false);
-// $canvas.addEventListener('mousemove', move, false);
-// $canvas.addEventListener('mouseup', up, false);
-// $canvas.addEventListener('mouseout', up, false);
 
 function down( ev ){
     if( lookModal )return 
@@ -488,6 +488,11 @@ $opRange.onchange = function(){
 
 // -------------------裁剪-------------------------------
 
+// 裁剪三步走
+// document.addEventListener('mousedown', docDown, false);
+// document.addEventListener('mousemove', docMove, false);
+// document.addEventListener('mouseup', docUp, false);
+
 if( document.body.ontouchstart !== undefined ){
     document.ontouchstart = docDown
     document.ontouchmove = docMove
@@ -498,12 +503,6 @@ if( document.body.ontouchstart !== undefined ){
     document.onmouseup = docUp
     document.onmouseout = docUp
 }
-
-
-// 裁剪三步走
-// document.addEventListener('mousedown', docDown, false);
-// document.addEventListener('mousemove', docMove, false);
-// document.addEventListener('mouseup', docUp, false);
 
 function docDown( ev ){
     if( cuted ) return
@@ -544,6 +543,7 @@ function docUp(){
             cuted = true
         }
         isDown = false
+        // 移动端抬起事件没有点，故这里不能赋值
         // points.push( { x : ev.clientX, y : ev.clientY } )
         // points.push( { x : points[ points.length - 1 ].x, y : points[ points.length - 1 ].y } )
     }
