@@ -18,15 +18,17 @@
 6. 鼠标触碰弹幕，弹幕悬停
 7. 撤销/前进
 8. 设置画笔信息
+9. 兼容移动端
+
 
 ### 功能截图：
 ----
 <img src="./image/home.png" height="400px"  />
-<span><img src="./image/2.png" height="400px" /></span>
-<span><img src="./image/cut.png" height="400px" /></span>
-<span><img src="./image/rotate.png" height="400px" /></span>
+<span><img src="./image/2.png" height="300px" /></span>
+<span><img src="./image/cut.png" height="300px" /></span>
+<span><img src="./image/rotate.png" height="300px" /></span>
 <img src="./image/dan.png" height="400px" />
-
+<img src="./image/mobile.png" />
 
 ## 前置说明
 ---
@@ -108,7 +110,7 @@ var penAttibutes = {                       // 画笔数据，
 
     后面我还做了他们绘制到画布上的时间对比，他们的时间都在1ms内，到时每次putImageData都要快一点点，但是快这一点时间的意义并不大。
 
-    toDataUrl也是有好处的，因为转置出来的是base64的字符串，所以他能够直接作为图片的url属性，让图片显示到页面。
+    toDataUrl也是有好处的，因为转置出来的是base64的字符串，所以他能够直接作为图片的src属性，让图片显示到页面。
 
 
 2. 画直线
@@ -146,9 +148,18 @@ var penAttibutes = {                       // 画笔数据，
 
 6. 使用drawImage须知：
 
-drawImage有三种传参方式，三种方式出来的效果，在书写前可以先参考效果。
+    drawImage有三种传参方式，三种方式出来的效果，在书写前可以先参考效果。
 
 参考地址：[CanvasRenderingContext2D.drawImage](https://www.canvasapi.cn/CanvasRenderingContext2D/drawImage)
+
+7. 兼容移动端
+
+    当在移动端时，会存在移动端延时300ms的问题，因为移动端有双击放大功能，故存在300ms时间。
+
+    我解决的方法是设置meta信息，禁止缩放，就可以防止300ms问题
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi" />
+
 
 ## 结语：
 ---
