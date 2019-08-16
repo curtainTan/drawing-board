@@ -527,8 +527,8 @@ function docMove( ev ){
                 op.style.display = "block"
             }
             var { x, y } = getPos( ev )
-            var elw = x - points[0].x
-            var elh = y - points[0].y
+            var elw = Math.abs(x - points[0].x)
+            var elh = Math.abs(y - points[0].y)
             document.querySelector(".text-px").innerHTML = elw + "x" + elh
             $cutBox.style.display = "block"
             $cutBox.style.height = elh + "px"
