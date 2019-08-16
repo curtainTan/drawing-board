@@ -147,17 +147,27 @@ $container.addEventListener( "click", ( e ) => {
     }
 } , false)
 
+if(document.body.ontouchstart !== undefined){
+    $canvas.ontouchstart = down
+    $canvas.ontouchmove = move
+    $canvas.ontouchend = up
+} else {
+    $canvas.onmousedown = down
+    $canvas.onmousemove = move
+    $canvas.onmouseup = up
+    $canvas.onmouseout = up
+}
+
 // 绘图三步走
-$canvas.addEventListener('mousedown', down, false);
-$canvas.addEventListener('mousemove', move, false);
-$canvas.addEventListener('mouseup', up, false);
-$canvas.addEventListener('mouseout', up, false);
+// $canvas.addEventListener('mousedown', down, false);
+// $canvas.addEventListener('mousemove', move, false);
+// $canvas.addEventListener('mouseup', up, false);
+// $canvas.addEventListener('mouseout', up, false);
 
 function down( ev ){
-    ev = ev || event
     if( lookModal )return 
     if( paintingModal === "cut" ) return
-        
+    ev = ev.touches ? ev.touches[0] : ev
     isDown = true;
     var { x, y } = getPos(ev);
     points.push({x, y});
@@ -166,6 +176,7 @@ function down( ev ){
 }
 
 function move( ev ) {
+    ev = ev.touches ? ev.touches[0] : ev
     const { x, y } = getPos(ev)
     globalPoint.x = x
     globalPoint.y = y
@@ -188,10 +199,15 @@ function move( ev ) {
     }
 }
 
+
+
 function up(ev) {
     if (!isDown) return;
     if( paintingModal === "cut" ) return
-    const { x, y } = getPos(ev);
+    // 移动端抬起没有坐标
+    // console.log( ev )
+    // ev = ev.touches ? ev.touches[0] : ev
+    var { x, y } = points[ points.length - 1 ];
     points.push({x, y});
     if( paintingModal === "line" ){
         drawLine1( beginPoint, { x, y } )

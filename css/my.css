@@ -190,7 +190,6 @@ input[type=range]::-webkit-slider-thumb {
     background-color: #33CC66;
 }
 
-
 /* 遮罩和drawer */
 .mask{
     position: fixed;
@@ -200,18 +199,7 @@ input[type=range]::-webkit-slider-thumb {
     display: none;
     z-index: 9;
 }
-/* .r-drawer-box{
-    position: absolute;
-    width: 30vw;
-    height: 100vh;
-    left: -30vw;
-    background-color: #555;
-    transition: left linear .3s;
-    z-index: 10;
-} */
 
-
-/* save-box */
 .r-drawer-box{
     position: absolute;
     height: 30vh;
@@ -369,3 +357,59 @@ input[type=range]::-webkit-slider-thumb {
 .danmu-container button:hover{
     background-color: rgb(161, 224, 211);
 }
+
+@media screen and ( max-width:  768px ) {
+    .tools{
+        left: 12px;
+        display: flex;
+        justify-content: flex-start;
+        top: 0;
+        height: auto;
+        width: 16px;
+    }
+    .container{
+        flex-direction: column;
+        width: 3px;
+        margin: auto 0;
+    }
+    .menuBox{
+        position: absolute;
+        top: 0px;
+        left: 45px;
+        width: 250px;
+        border: 1px solid rgb(100, 100, 100);
+        background-color: #fff;
+        border-radius: 8px;
+        cursor: default;
+        padding: 18px;
+        height: fit-content;
+    }
+    .container i{
+        padding: 2px;
+        font-size: 16px;
+        margin: 4px;
+        transition: 0.4s;
+        border: 2px solid transparent;
+    }
+    /* danmu */
+    .danmu-box{
+        z-index: 90;
+        position: fixed;
+        width: 100vw;
+        height: 80px;
+        bottom: 0;
+        text-align: center;
+        display: none;
+    }
+    .danmu-container{
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+
+
+
+
+
+
