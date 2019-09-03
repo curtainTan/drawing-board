@@ -501,7 +501,6 @@ if( document.body.ontouchstart !== undefined ){
     document.onmousedown = docDown
     document.onmousemove = docMove
     document.onmouseup = docUp
-    document.onmouseout = docUp
 }
 
 function docDown( ev ){
