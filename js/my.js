@@ -580,9 +580,6 @@ function cutSave(  ){
     canvas2.width = cutw
     canvas2.height = cuth
 
-    console.log( points )
-    console.log( cutw, cuth )
-
     var oldData = ctx.getImageData( points[0].x, points[0].y, cutw, cuth )
     ctx2.putImageData( oldData, 0, 0, )
 
