@@ -447,8 +447,8 @@ $mask.addEventListener("click", function(){
 
 $btn.addEventListener("click", function(){
     cuted = false
-    let saveA = document.createElement('a');
-    document.body.appendChild(saveA);
+    let saveA = document.createElement('a')
+    document.body.appendChild(saveA)
     saveA.href = document.getElementsByClassName("displayImg")[0].src
     saveA.download = 'canvas-'+(new Date).getTime()
     saveA.target = '_blank'
