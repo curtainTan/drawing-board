@@ -5,8 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #canvas {
+            background: #9c9;
+        }
+    </style>
 </head>
 <body>
-    
+    <canvas id="canvas"></canvas>
+    <script>
+        const el = document.getElementById('canvas');
+        const ctx = el.getContext('2d');
+
+        const redPen = {
+            strokeStyle: 'red',
+        };
+        const setPenAttribute = (penData, ctx) => {
+            const keys = Object.keys(penData);
+            keys.forEach(key => (ctx[key] = penData[key]));
+        }
+
+        ctx.beginPath();
+        ctx.save();
+        setPenAttribute(redPen, ctx);
+        ctx.moveTo(30, 30);
+        ctx.lineTo(100, 100);
+        ctx.stroke();
+        ctx.restore();
+    </script>
 </body>
 </html>
