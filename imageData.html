@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imagedata</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const el = document.getElementById('canvas');
+        const ctx = el.getContext('2d');
+
+        ctx.beginPath();
+        const imagedata = ctx.createImageData(300, 150);
+        // 给对应坐标位置的数据设置色值为绿色
+        for (let x = 1; x <= 300; x+=5) {
+            for (let y = 1; y <= 150; y+= 5) {
+                let index = 4 * ((y - 1) * 300 + (x - 1));
+                // 变为绿色，色值依次是0, 128, 0, 256
+                imagedata.data[index] = 0;
+                imagedata.data[index + 1] = 128;
+                imagedata.data[index + 2] = 0;
+                imagedata.data[index + 3] = 256;
+            }
+        }
+        console.log('-------imageData------', imagedata);
+        ctx.putImageData(imagedata, 0, 0);
+    </script>
+</body>
+</html>
